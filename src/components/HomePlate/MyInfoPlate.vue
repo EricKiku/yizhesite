@@ -25,8 +25,14 @@ function goBlog() {
                 <img class="name" src="../../assets/images/yizhe_text.png" alt="">
             </div>
             <div class="bottom boli ">
-                <a href="https://github.com/EricKiku"><img class="contact pointer"
+                <a href="https://github.com/EricKiku" target="_blank"><img class="contact pointer"
                         src="../../assets/images/contacts/github.png" alt=""></a>
+                <a href="https://space.bilibili.com/350120067" target="_blank"><img class="contact pointer"
+                        src="../../assets/images/contacts/bilibili.png" alt=""></a>
+                <a href="https://blog.csdn.net/Eirckiku?spm=1000.2115.3001.5343" target="_blank"><img
+                        class="contact pointer" src="../../assets/images/contacts/csdn.png" alt=""></a>
+                <a href="mailto:2966678301@qq.com" target="_blank"><img class="contact pointer"
+                        src="../../assets/images/contacts/email.png" alt=""></a>
             </div>
         </div>
         <div class="container right">
@@ -94,8 +100,17 @@ function goBlog() {
             display: flex;
             justify-content: left;
             align-items: center;
-            width: 100%;
+            // width: 100%;
             border-radius: 5px;
+            padding: 5px 10px;
+
+            a {
+                height: 40px;
+                display: flex;
+                justify-content: center;
+                align-items: center;
+
+            }
 
             img {
                 width: 25px;

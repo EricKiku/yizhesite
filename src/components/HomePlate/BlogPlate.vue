@@ -32,7 +32,7 @@ function handleHover(val: boolean) {
     position: relative;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 10px;
-    background-image: url('https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/2024-03-15_115626.png');
+    background-image: url('https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/preview2.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;
