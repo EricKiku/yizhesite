@@ -13,7 +13,8 @@ function goPath(name: any) {
 
 <template>
     <div class="header">
-        <div class="item" :class="{ active: route.path === '/blog/home' }" @click="goPath('blog')">首页</div>
+        <div class="item home" @click="goPath('/')"> 主站 </div>
+        <div class=" item" :class="{ active: route.path === '/blog/home' }" @click="goPath('blog')">首页</div>
         <div class="item" :class="{ active: route.path === '/blog/list' }" @click="goPath('list')">博客</div>
         <div class="item" :class="{ active: route.path === '/blog/essay' }" @click="goPath('essay')">随笔</div>
     </div>
@@ -34,6 +35,20 @@ function goPath(name: any) {
     top: 5px;
     z-index: 100;
 
+    .home {
+        transition: all 0.2s;
+        padding-right: 5px;
+        border-right: 3px solid var(--AccColor);
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+
+        &:hover {
+            transform: scale(1.1);
+            color: var(--TerColor);
+            text-shadow: 5px 5px 8px rgba(171, 126, 5, 0.677);
+        }
+    }
+
     .item {
         font-weight: bold;
         cursor: pointer;
@@ -45,6 +60,10 @@ function goPath(name: any) {
 
     .active {
         color: var(--TerColor);
+        border-bottom: 3px solid var(--AccColor);
+        border-bottom-left-radius: 3px;
+        border-bottom-right-radius: 3px;
+
     }
 }
 </style>

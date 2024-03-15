@@ -2,8 +2,11 @@
 import { ref, onMounted, onUnmounted } from "vue"
 import BlogPlate from "@/components/HomePlate/BlogPlate.vue";
 import MyInfoPlate from "@/components/HomePlate/MyInfoPlate.vue";
+import Footer from "@/components/Footer.vue";
+import { useRouter } from "vue-router";
 import { gsap } from "gsap"
 import { ScrollTrigger } from "gsap/ScrollTrigger"
+const router = useRouter()
 gsap.registerPlugin(ScrollTrigger)
 // 获取所有的section，并设置背景图片
 const sections = ref<HTMLElement[]>([])
@@ -65,6 +68,12 @@ onUnmounted(() => {
     // 移除滚动事件
 
 })
+
+function goPath(name: string) {
+    router.push({
+        name
+    })
+}
 </script>
 
 <template>
@@ -74,6 +83,15 @@ onUnmounted(() => {
                 <a href="https://github.com/EricKiku" target="_blank"> <img src="../assets/images/yizhe_avatar.png"
                         alt="yizhe"></a>
             </div>
+            <div class="header_list">
+                <div class="item" @click="goPath('blog')">
+                    博客
+                </div>
+            </div>
+            <div class="avatar pointer">
+                <a href="https://github.com/EricKiku/yizhesite" target="_blank"> <img src="../assets/images/github.png"
+                        alt="yizhe"></a>
+            </div>
         </div>
         <section class="section1">
             <MyInfoPlate />
@@ -81,6 +99,15 @@ onUnmounted(() => {
         <section class="section2">
             <BlogPlate />
         </section>
+        <!-- <section>
+            <h1>This Is My Blog.</h1>
+        </section>
+        <section>
+            <h1>This Is My Blog.</h1>
+        </section>
+        <section>
+            <h1>This Is My Blog.</h1>
+        </section>    
         <section>
             <h1>This Is My Blog.</h1>
         </section>
@@ -89,17 +116,9 @@ onUnmounted(() => {
         </section>
         <section>
             <h1>This Is My Blog.</h1>
-        </section>
-        <section>
-            <h1>This Is My Blog.</h1>
-        </section>
-        <section>
-            <h1>This Is My Blog.</h1>
-        </section>
-        <section>
-            <h1>This Is My Blog.</h1>
-        </section>
+        </section> -->
     </div>
+    <Footer />
 </template>
 
 <style scoped lang="less">
@@ -131,6 +150,33 @@ onUnmounted(() => {
             border-radius: 50%;
         }
     }
+
+    .header_list {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        align-items: center;
+
+        .item {
+            margin: 0 20px;
+            cursor: pointer;
+            transition: all 0.2s;
+            font-size: 20px;
+            font-family: "Roboto", sans-serif;
+            border-radius: 25px;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 10px 20px;
+
+            &:hover {
+                background-color: var(--PriColor);
+                color: var(--SecColor);
+                box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
+            }
+        }
+    }
 }
 
 section {
@@ -150,6 +196,6 @@ section {
 }
 
 .section2 {
-    background-image: url(https://yizhesite-1317876382.cos.ap-beijing.myqcloud.com/home-blog-bg.jpg);
+    background-image: url(https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/blogbgsmall.jpg);
 }
 </style>

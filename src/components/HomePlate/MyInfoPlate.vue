@@ -6,6 +6,14 @@ function goBlog() {
     router.push('/blog')
 
 }
+
+// yoyo
+// gsap.to('.plate', {
+//     scale: 1.1,
+//     duration: 1,
+//     repeat: -1,
+//     yoyo: true
+// })
 </script>
 
 <template>
@@ -27,12 +35,12 @@ function goBlog() {
                     <img src="../../assets/images/blog.png" alt="">
                     <span>博客</span>
                 </div>
-                <div class="box boli">
+                <!-- <div class="box boli">
                     <img src="../../assets/images/blog.png" alt="">
                     <span>博客</span>
-                </div>
+                </div> -->
             </div>
-            <div class="line line2">
+            <!-- <div class="line line2">
                 <div class="box boli">
                     <img src="../../assets/images/blog.png" alt="">
                     <span>博客</span>
@@ -41,7 +49,7 @@ function goBlog() {
                     <img src="../../assets/images/blog.png" alt="">
                     <span>博客</span>
                 </div>
-            </div>
+            </div> -->
         </div>
     </div>
 </template>
