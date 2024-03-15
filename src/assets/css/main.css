@@ -1,0 +1,71 @@
+/* @import './base.css'; */
+
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "WenQuanYi Micro Hei", "Microsoft YaHei", "Hiragino Sans GB", "PingFang SC", sans-serif;
+  cursor: url('../curs/pointer48.png'), auto;
+  /* cursor: url('../curs/link.cur'), auto; */
+  /* 主色调 ，标题，按钮，重要原色*/
+  --PriColor: #003366;
+  /* 辅助色，背景色 */
+  --SecColor: #F0F0F0;
+  /* 第三色，Tertiary Color  链接，图标，次要按钮*/
+  --TerColor: #4D94FF;
+  /* 强调色，特别按钮等 */
+  --AccColor: #FFA500;
+  /* 中性色（Neutral Colors），正文文本 */
+  --NeuColor: #2C3E50;
+  /* 暗色（Dark Color）,边框，页脚等 */
+  --DarkColor: #000080;
+
+}
+
+html,
+body {
+  scroll-behavior: smooth;
+}
+
+.pointer {
+  cursor: pointer;
+}
+
+/* 改变滚动条的宽度和背景 */
+body::-webkit-scrollbar {
+  width: 8px;
+  /* 调整滚动条的宽度 */
+  background-color: #f5f5f5;
+  /* 滚动条的背景颜色 */
+}
+
+/* 改变滚动条滑块的样式 */
+body::-webkit-scrollbar-thumb {
+  background-color: var(--PriColor);
+  /* 滚动条滑块的颜色 */
+  border-radius: 6px;
+  /* 滑块的圆角 */
+}
+
+/* 改变滚动条滑块悬停时的样式 */
+body::-webkit-scrollbar-thumb:hover {
+  background-color: var(--TerColor);
+  /* 滑块悬停时的颜色 */
+}
+
+/* 针对滚动条的轨道添加样式 */
+body::-webkit-scrollbar-track {
+  background-color: #ddd;
+  /* 滚动条轨道的颜色 */
+  border-radius: 6px;
+  /* 轨道的圆角 */
+}
+
+/* 针对滚动条的轨道悬停时添加样式 */
+body::-webkit-scrollbar-track:hover {
+  background-color: #ccc;
+  /* 轨道悬停时的颜色 */
+}
+
+#app {
+  height: 100vh;
+}
