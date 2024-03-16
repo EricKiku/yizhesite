@@ -34,26 +34,28 @@ function scroll() {
         )
     })
 }
-
+let lastScrollTop = 0;
 // 监听滚动事件
 function watchScroll() {
-    let lastScrollTop = 0;
+
     // 以节流方式监听滚动事件
-    window.addEventListener('scroll', throttle(() => {
-        // 监听滚动条是向上还是向下滚动
-        let st = window.pageYOffset || document.documentElement.scrollTop;
-        if (st > lastScrollTop) {
-            // 向下滚动，收缩.header
-            gsap.to('.header', { y: '-64px', duration: 0.5 });
-            // gsap.to('.header *', { opacity: 0, duration: 0.5 });
-        } else {
-            // 向上滚动，展开.header
-            gsap.to('.header', { y: '2px', duration: 0.5 });
-            // gsap.to('.header *', { opacity: 1, duration: 0.5 });
-        }
-        lastScrollTop = st <= 0 ? 0 : st; // 为负则置为0，因为iOS有负的滚动
-    }, 100), false)
+    window.addEventListener('scroll', handleScroll, false)
 }
+
+const handleScroll = throttle(() => {
+    // 监听滚动条是向上还是向下滚动
+    let st = window.pageYOffset || document.documentElement.scrollTop;
+    if (st > lastScrollTop) {
+        // 向下滚动，收缩.header
+        gsap.to('.header', { y: '-64px', duration: 0.5 });
+        // gsap.to('.header *', { opacity: 0, duration: 0.5 });
+    } else {
+        // 向上滚动，展开.header
+        gsap.to('.header', { y: '2px', duration: 0.5 });
+        // gsap.to('.header *', { opacity: 1, duration: 0.5 });
+    }
+    lastScrollTop = st <= 0 ? 0 : st; // 为负则置为0，因为iOS有负的滚动
+}, 100)
 function throttle(callback: any, time: any) {
     let lastTime = 0
     return function () {
@@ -66,7 +68,7 @@ function throttle(callback: any, time: any) {
 }
 onUnmounted(() => {
     // 移除滚动事件
-
+    window.removeEventListener('scroll', handleScroll, false)
 })
 
 function goPath(name: string) {
@@ -87,6 +89,9 @@ function goPath(name: string) {
                 <div class="item" @click="goPath('blog')">
                     博客
                 </div>
+                <div class="item" @click="goPath('tools')">
+                    藏宝阁
+                </div>
             </div>
             <div class="avatar pointer">
                 <a href="https://github.com/EricKiku/yizhesite" target="_blank"> <img src="../assets/images/github.png"
@@ -97,12 +102,17 @@ function goPath(name: string) {
             <MyInfoPlate />
         </section>
         <section class="section2">
-            <BlogPlate />
+            <BlogPlate :img="'https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/preview2.png'" :toPath="'/blog'" />
         </section>
-        <!-- <section>
-            <h1>This Is My Blog.</h1>
+        <section class="section3">
+            <BlogPlate :img="'https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/plate_visual.png'"
+                :toPath="'http://www.erickiku.top:8111'" target="_blank" />
         </section>
-        <section>
+        <section class="section4">
+            <BlogPlate :img="'https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/toolspreview.png'"
+                :toPath="'/tools'" />
+        </section>
+        <!--<section>
             <h1>This Is My Blog.</h1>
         </section>
         <section>
@@ -197,5 +207,13 @@ section {
 
 .section2 {
     background-image: url(https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/blogbgsmall.jpg);
+}
+
+.section3 {
+    background-image: url(https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/visual_plate_bg.png);
+}
+
+.section4 {
+    background-image: url(https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/toolsbg.jpg);
 }
 </style>

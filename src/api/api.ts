@@ -19,3 +19,10 @@ export const addView = (idv: string) => {
     },
   });
 };
+
+export const getTools = () => {
+  return request({
+    url: "/tools",
+    method: "get",
+  });
+};

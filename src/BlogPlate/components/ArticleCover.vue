@@ -17,14 +17,16 @@ function goArticle() {
         query: {
             path: props.article.file,
             coverUrl: props.article.cover,
-            bid: props.article.bid
+            bid: props.article.bid,
+            title: props.article.title,
         }
     })
 }
+
 </script>
 
 <template>
-    <div class="box" @click="goArticle">
+    <div ref="box" class="box" @click="goArticle">
         <div class="cover">
             <img :src="article.cover" alt="cover" />
             <div class="class">
@@ -60,14 +62,14 @@ function goArticle() {
     border: 2px solid #ccc;
     border-radius: 5px;
     padding: 2px;
-    transition: all 0.2s;
     background-color: white;
     color: var(--NeuColor);
     box-sizing: border-box;
+    transition: all 0.3s;
 
     &:hover {
         border: 2px solid var(--TerColor);
-        box-shadow: 0 0 10px #ccc;
+        box-shadow: -3px -3px 10px var(--SecColor), 3px 3px 10px var(--AccColor);
     }
 
     .cover {

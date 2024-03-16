@@ -3,10 +3,16 @@ import { onMounted, ref } from "vue"
 import { useRouter } from "vue-router";
 import { gsap } from "gsap/gsap-core";
 
-
+const props = defineProps(['img', 'toPath', 'target'])
+console.log(props.img);
 const router = useRouter()
-const goBlog = () => {
-    router.push('/blog')
+const a = ref(null)
+const goPage = () => {
+    if (props.target == '_blank') {
+        window.open(props.toPath)
+    } else {
+        router.push(props.toPath)
+    }
 }
 
 
@@ -18,7 +24,8 @@ function handleHover(val: boolean) {
 </script>
 
 <template>
-    <div class="plate pointer" @click="goBlog" @mouseenter="handleHover(true)" @mouseleave="handleHover(false)">
+    <div class="plate pointer" :style="{ backgroundImage: 'url(' + props.img + ')' }" @click="goPage"
+        @mouseenter="handleHover(true)" @mouseleave="handleHover(false)">
         <div class="tip" :class="{ show: isHover }">
             去看看->>
         </div>
@@ -32,7 +39,6 @@ function handleHover(val: boolean) {
     position: relative;
     box-shadow: rgba(99, 99, 99, 0.2) 0px 2px 8px 0px;
     border-radius: 10px;
-    background-image: url('https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/preview2.png');
     background-size: cover;
     background-repeat: no-repeat;
     background-position: center;

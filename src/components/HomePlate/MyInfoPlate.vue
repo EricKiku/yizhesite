@@ -2,9 +2,12 @@
 import { ref } from "vue"
 import { useRouter } from "vue-router";
 const router = useRouter()
-function goBlog() {
-    router.push('/blog')
-
+function goPage(url: string, target: string) {
+    if (target === '_blank') {
+        window.open(url)
+    } else {
+        router.push(url)
+    }
 }
 
 // yoyo
@@ -37,25 +40,25 @@ function goBlog() {
         </div>
         <div class="container right">
             <div class="line line1">
-                <div class="box boli" @click="goBlog">
+                <div class="box boli" @click="goPage('/blog', '')">
                     <img src="../../assets/images/blog.png" alt="">
                     <span>博客</span>
+                </div>
+                <div class="box boli" @click="goPage('http://www.erickiku.top:8111/', '_blank')">
+                    <img src="https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/keshihua.png" alt="">
+                    <span>可视化Demo</span>
+                </div>
+            </div>
+            <div class="line line2">
+                <div class="box boli" @click="goPage('/tools', '')">
+                    <img src="https://cdn.jsdelivr.net/gh/EricKiku/pictures@main/img/cang1.png" alt="">
+                    <span>藏宝阁</span>
                 </div>
                 <!-- <div class="box boli">
                     <img src="../../assets/images/blog.png" alt="">
                     <span>博客</span>
                 </div> -->
             </div>
-            <!-- <div class="line line2">
-                <div class="box boli">
-                    <img src="../../assets/images/blog.png" alt="">
-                    <span>博客</span>
-                </div>
-                <div class="box boli">
-                    <img src="../../assets/images/blog.png" alt="">
-                    <span>博客</span>
-                </div>
-            </div> -->
         </div>
     </div>
 </template>

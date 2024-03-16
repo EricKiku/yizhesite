@@ -14,6 +14,8 @@ let loading = ref(false)
 let toc = ref<any>([])
 // 封面路径
 let coverUrl = ref<any>(route.query.coverUrl)
+// 标题
+let title = ref<any>(route.query.title)
 onMounted(() => {
     // 把滚动条重置到顶部
     scrollTop()
@@ -118,6 +120,9 @@ function addAnchor(md: string) {
         <div class="black" v-show="!markdownContent">
             <div>正在加载文章内容...</div>
         </div>
+        <div class="article_title">
+            {{ title }}
+        </div>
         <div class="article pre" v-if="markdownContent" v-html="markdownContent"></div>
         <div class="toc">
             <h2>目录</h2>
@@ -156,12 +161,25 @@ function addAnchor(md: string) {
         padding-top: 20px;
         color: var(--NeuColor);
     }
+
+    .article_title {
+        font-size: 30px;
+        font-weight: bold;
+        margin-bottom: 20px;
+        color: var(--NeuColor);
+        text-shadow: 5px 5px 8px rgba(171, 126, 5, 0.677);
+    }
 }
 
 .coverUrl {
+    display: flex;
+    justify-content: center;
+    margin-bottom: 20px;
+
     img {
-        width: 100%;
+        width: 50%;
         border-radius: 5px;
+        margin: 0 auto;
     }
 }
 

@@ -40,6 +40,11 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path: "/tools",
+      name: "tools",
+      component: () => import("@/ToolsNavPlate/ToolsNavHome.vue"),
+    },
   ],
 });
 
