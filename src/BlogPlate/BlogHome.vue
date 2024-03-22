@@ -7,15 +7,7 @@ import My from "./components/My.vue";
 import { getActicles } from "@/api/api"
 const router = useRouter()
 
-// 创建一个ref来引用audio元素
-const audioPlayer = ref(null);
-// 当组件挂载到DOM时，尝试播放音频
-onMounted(() => {
-    // 进入页面3秒后尝试播放音频
-    // setTimeout(() => {
-    //     handlePlay();
-    // }, 3000);
-});
+
 
 </script>
 
