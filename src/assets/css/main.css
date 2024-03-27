@@ -69,3 +69,39 @@ body::-webkit-scrollbar-track:hover {
 #app {
   height: 100vh;
 }
+
+/* Madimi One */
+@font-face {
+  font-family: 'Madimi One';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/public/fonts/MadimiOne-Regular.ttf') format('truetype');
+}
+
+/* ZCOOL KuaiLe */
+@font-face {
+  font-family: 'ZCOOL KuaiLe';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/public/fonts/ZCOOLKuaiLe-Regular.ttf') format('truetype');
+}
+
+/* Ma Shan Zheng */
+@font-face {
+  font-family: 'Ma Shan Zheng';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/public/fonts/MaShanZheng-Regular.ttf') format('truetype');
+}
+
+/* ZCOOL XiaoWei */
+@font-face {
+  font-family: 'ZCOOL XiaoWei';
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src: url('/public/fonts/ZCOOLXiaoWei-Regular.ttf') format('truetype');
+}

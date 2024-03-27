@@ -1,6 +1,8 @@
 <script lang="ts" setup>
 import { onMounted, ref } from "vue";
 import { useRouter } from "vue-router";
+import { useDeviceStore } from "@/stores/deviceType";
+const store = useDeviceStore();
 const router = useRouter();
 // 接收props
 const props = defineProps(["article"]);
@@ -23,7 +25,11 @@ function goArticle() {
 </script>
 
 <template>
-  <div ref="box" class="box" @click="goArticle">
+  <div
+    ref="box"
+    :class="{ box: store.isDesktop(), mob_box: store.isMobile() }"
+    @click="goArticle"
+  >
     <div class="cover">
       <img :src="article.cover" alt="cover" />
       <div class="class">
@@ -50,6 +56,117 @@ function goArticle() {
 </template>
 
 <style scoped lang="less">
+.mob_box {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  border: 2px solid #ccc;
+  border-radius: 5px;
+  padding: 2px;
+  background-color: white;
+  color: var(--NeuColor);
+  box-sizing: border-box;
+  transition: all 0.3s;
+  margin: 10px 0px;
+  &:hover {
+    border: 2px solid var(--TerColor);
+    box-shadow: -3px -3px 10px var(--SecColor), 3px 3px 10px var(--AccColor);
+  }
+
+  .cover {
+    width: 100px;
+    height: 100px;
+    position: relative;
+
+    .class {
+      position: absolute;
+      top: 10px;
+      left: 10px;
+      padding: 5px;
+      background-color: var(--SecColor);
+      color: var(--AccColor);
+      font-size: 16px;
+      font-weight: bold;
+      border-radius: 5px;
+    }
+
+    .tag {
+      position: absolute;
+      bottom: 5px;
+      right: 5px;
+      padding: 2px 3px;
+      background-color: var(--SecColor);
+      color: var(--TerColor);
+      font-size: 12px;
+      border-radius: 5px;
+    }
+
+    img {
+      width: 100px;
+      height: 100px;
+    }
+  }
+
+  .info {
+    height: 100px;
+    padding: 10px;
+    box-sizing: border-box;
+    position: relative;
+    flex: 1;
+    .title {
+      margin: 0;
+      font-size: 16px;
+      font-weight: bold;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+
+    .sectitle {
+      margin: 0;
+      margin-top: 5px;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      display: -webkit-box;
+      -webkit-line-clamp: 2;
+      -webkit-box-orient: vertical;
+      color: #a6a6a6;
+      font-size: 14px;
+    }
+
+    .footer {
+      position: absolute;
+      bottom: 0px;
+      width: 100%;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .read {
+      display: flex;
+      align-items: center;
+      color: var(--TerColor);
+      opacity: 0.4;
+      img {
+        width: 20px;
+        height: 20px;
+        margin-right: 5px;
+      }
+    }
+
+    .date {
+      margin: 0px;
+      font-size: 12px;
+      color: var(--TerColor);
+      font-family: "ZCOOL KuaiLe", sans-serif;
+      font-weight: 700;
+      position: absolute;
+      bottom: 0px;
+      right: 10px;
+    }
+  }
+}
 .box {
   width: 300px;
   height: 350px;

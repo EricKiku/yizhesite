@@ -2,7 +2,9 @@
 import { onMounted, ref } from "vue";
 import { gsap } from "gsap";
 import { useRoute } from "vue-router";
+import { useDeviceStore } from "@/stores/deviceType";
 const route = useRoute();
+const store = useDeviceStore();
 onMounted(() => {
   // 选择图片元素
   const image: HTMLElement = document.querySelector(".image-3d") as HTMLElement;
@@ -40,8 +42,11 @@ onMounted(() => {
 </script>
 
 <template>
-  <div class="me" v-show="route.path === '/blog/home'">
-    <div class="left">
+  <div
+    :class="{ me: store.isDesktop(), mob_me: store.isMobile() }"
+    v-show="route.path === '/blog/home'"
+  >
+    <div class="left" v-if="store.isDesktop()">
       <h1>Hi!👋</h1>
       <h1 class="name">
         <span>I'm </span>
@@ -51,10 +56,56 @@ onMounted(() => {
     <div class="right">
       <img class="image-3d" src="../../assets/images/yizhe_avatar.png" alt="" />
     </div>
+    <div class="left" v-if="store.isMobile()">
+      <h1>Hi!👋</h1>
+      <h1 class="name">
+        <span>I'm </span>
+        <span class="_name">yizhe</span>
+      </h1>
+    </div>
   </div>
 </template>
 
 <style scoped lang="less">
+.mob_me {
+  width: 100%;
+  height: auto;
+  padding-top: 100px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  .left {
+    h1 {
+      font-size: 4rem;
+      font-weight: bold;
+      font-family: "Madimi One", monospace;
+      text-shadow: 5px 5px 8px rgba(171, 126, 5, 0.677);
+    }
+
+    .name {
+      display: flex;
+      align-items: center;
+
+      ._name {
+        color: var(--TerColor);
+        font-family: "Madimi One", sans-serif;
+        margin-left: 25px;
+      }
+    }
+  }
+
+  .right {
+    img {
+      width: 200px;
+      height: 200px;
+      border-radius: 50%;
+      transition: transform 0.3s ease;
+      transform-style: preserve-3d;
+      perspective: 500px;
+    }
+  }
+}
 .me {
   height: 100vh;
   width: 50%;
@@ -66,7 +117,7 @@ onMounted(() => {
     h1 {
       font-size: 5rem;
       font-weight: bold;
-      font-family: "Comic Sans MS", "Helvetica", monospace;
+      font-family: "Madimi One", monospace;
       text-shadow: 5px 5px 8px rgba(171, 126, 5, 0.677);
     }
 

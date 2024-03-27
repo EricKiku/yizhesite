@@ -8,13 +8,14 @@ pre {
     margin: 10px 0;
     /* 外边距 */
     font-family: "JetBrains Mono" !important;
-    font-size: 18px;
     /* 字体 */
     line-height: 1.4;
     /* 行高 */
     overflow-x: auto;
     /* 水平滚动 */
     position: relative;
+    border: 1px solid #e1e1e1;
+    padding-bottom: 20px;
 }
 
 pre>code {}
@@ -24,9 +25,9 @@ code[class^="language-"]::before {
     letter-spacing: 2px;
     position: absolute;
     /* 绝对定位 */
-    top: 0;
+    left: 0;
     /* 距离顶部的距离，根据需要调整 */
-    right: 0;
+    bottom: 0;
     /* 距离右侧的距离，根据需要调整 */
     padding: 4px;
     /* 添加一些内边距 */
@@ -35,11 +36,12 @@ code[class^="language-"]::before {
     /* 设置文本颜色 */
     border-radius: 4px 0 0 4px;
     /* 左上角的圆角 */
-    font-size: 16px;
+    font-size: 12px;
     /* 文本大小 */
-    font-weight: 500;
+    font-weight: 700;
     z-index: 1;
     /* 确保标识显示在code元素之上 */
+
 }
 
 code[class="language-js"]::before {
