@@ -33,7 +33,7 @@ function loadArticles() {
       // 再次加载
       setTimeout(() => {
         loadArticles();
-      }, 2000);
+      }, 100);
     }
   );
 }
@@ -41,6 +41,19 @@ function loadArticles() {
 function goBolgList() {
   router.push({
     name: "list",
+  });
+}
+
+// go article
+function goArticle(article: Article) {
+  router.push({
+    name: "article",
+    query: {
+      path: article.file,
+      coverUrl: article.cover,
+      bid: article.bid,
+      title: article.title,
+    },
   });
 }
 </script>
@@ -62,11 +75,32 @@ function goBolgList() {
       加载失败...
     </div>
     <div class="list">
-      <ArticleCover
-        v-for="article in articles"
-        :key="article.bid"
-        :article="article"
-      />
+      <template v-if="store.isMobile()">
+        <ArticleCover
+          v-for="article in articles"
+          :key="article.bid"
+          :article="article"
+        />
+      </template>
+      <template v-if="store.isDesktop()">
+        <div
+          class="card"
+          v-for="(article, index) in articles"
+          :key="index"
+          @click="goArticle(article)"
+        >
+          <div class="align">
+            <span class="red"></span>
+            <span class="yellow"></span>
+            <span class="green"></span>
+          </div>
+          <h2>{{ article.title }}</h2>
+          <img :src="article.cover" alt="" />
+          <p>
+            {{ article.sectitle }}
+          </p>
+        </div>
+      </template>
     </div>
     <div class="more">
       <div class="btn" @click="goBolgList">
@@ -161,7 +195,75 @@ function goBolgList() {
   .list {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
+    grid-template-rows: 260px 260px;
     grid-gap: 30px;
+
+    .card {
+      width: 90%;
+      height: 190px;
+      padding: 0.5rem;
+      background: rgba(198, 198, 198, 0.34);
+      border-radius: 8px;
+      backdrop-filter: blur(5px);
+      border-bottom: 3px solid rgba(255, 255, 255, 0.44);
+      border-left: 2px rgba(255, 255, 255, 0.545) outset;
+      box-shadow: -40px 50px 30px rgba(0, 0, 0, 0.28);
+      transform: skewX(10deg);
+      transition: 0.4s;
+      overflow: hidden;
+      color: black;
+      cursor: pointer;
+      &:hover {
+        height: 260px;
+        transform: skew(0deg);
+      }
+      h2 {
+        text-align: center;
+        margin: 15px;
+        color: var(--PriColor);
+        text-shadow: -10px 5px 10px rgba(50, 50, 50, 0.37);
+        white-space: nowrap;
+        overflow: hidden;
+        text-overflow: ellipsis;
+      }
+      img {
+        width: 100%;
+        max-height: 100px;
+        object-fit: cover;
+      }
+      .align {
+        height: 40px;
+        padding: 1rem;
+        display: flex;
+        flex-direction: row;
+        gap: 5px;
+        align-self: flex-start;
+        box-sizing: border-box;
+        .red {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #ff605c;
+          box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.28);
+        }
+
+        .yellow {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #ffbd44;
+          box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.28);
+        }
+
+        .green {
+          width: 10px;
+          height: 10px;
+          border-radius: 50%;
+          background-color: #00ca4e;
+          box-shadow: -5px 5px 5px rgba(0, 0, 0, 0.28);
+        }
+      }
+    }
   }
 
   .more {
